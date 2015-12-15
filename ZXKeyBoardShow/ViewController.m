@@ -26,13 +26,15 @@
     CGRect rc = [cell convertRect:_selectTextField.frame toView:_myTableView];
     CGFloat y = _myTableView.frame.size.height - 216 - 40;
     if (rc.origin.y + 40 > y ) {
-        _myTableView.contentOffset = CGPointMake(0, 216 + 40);
+//        _myTableView.contentOffset = CGPointMake(0, 216 + 40);
+        _myTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 216 - 40);
     }
 }
 - (void)KeyboardWillHide:(NSNotification *)notification
 {
-    _myTableView.contentOffset = CGPointZero;
-    
+//    _myTableView.contentOffset = CGPointZero;
+    _myTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+
 }
 
 
@@ -41,7 +43,7 @@
 
     _myTableView.scrollEnabled = YES;
     _myData = [NSMutableArray array];
-    for (int i = 0 ; i < 20; i ++) {
+    for (int i = 0 ; i < 40; i ++) {
         NSString *temp = [NSString stringWithFormat:@"%d",i + 1];
         [_myData addObject:temp];
     }
